@@ -25,6 +25,10 @@ public class ImagePickerSaverPlugin implements MethodChannel.MethodCallHandler {
     private final ImagePickerDelegate delegate;
 
     public static void registerWith(PluginRegistry.Registrar registrar) {
+        if (registrar.activity() == null) {
+          return;
+        }
+
         final MethodChannel channel = new MethodChannel(registrar.messenger(), CHANNEL);
 
         final File externalFilesDirectory =
